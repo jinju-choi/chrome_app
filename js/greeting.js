@@ -9,23 +9,30 @@ const greeting = document.querySelector('#greeting');
 // form 안에서 input 버튼 타입이 submit이면 자동으로 입력된 값을 전송함
 // 새로고침 되는것 막기(브라우저 자체에서 submit을 하면 새로고침 되도록 되어있다) -> submit 이벤트
 
-// string 만 포함된 변수는 대문자로 표기 (관습)
-// ("string" + 변수) 로 작성하기 보다 => (`string ${변수}`) 식으로 작성하기
 const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
 // 이름을 입력하면 입력창 사라지고 유저가 입력한 텍스트가 보임
 function onLoginSubmit(event){
-  // event.preventDefault(); 브라우저가 기본동작을 못하게 막음
   event.preventDefault();
   const userName = loginInput.value;
 
   loginform.classList.add(HIDDEN_CLASSNAME);
   console.log(userName);
 
-  greeting.innerHTML = `Hello ${userName}!`
+  localStorage.setItem(USERNAME_KEY, userName);
+  printGreeting(userName);
+}
+
+const saveUsername = localStorage.getItem(USERNAME_KEY);
+
+function printGreeting (username){
+  greeting.innerHTML = `Hello ${username}!`
   greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
-
-loginform.addEventListener("submit", onLoginSubmit);
-
-
+if(saveUsername === null) {
+  loginform.classList.remove(HIDDEN_CLASSNAME);
+  loginform.addEventListener("submit", onLoginSubmit);
+} else {
+  printGreeting(saveUsername);
+}
