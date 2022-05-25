@@ -23,14 +23,22 @@ function onLoginSubmit(event){
 function paintingGreetings (username) {
   greeting.classList.remove(HIDDEN_CLASSNAME);
   greeting.innerHTML = `Hello ${username}!`;
+  localStorage.setItem(USERNAME_KEY, userName);
+  printGreeting(userName);
 }
 
 const saveUsername = localStorage.getItem(USERNAME_KEY);
 
 // 저장된 유저 이름이 없으면 입력란 보이게 & 입력한 정보를 저장해서 새로고침해도 보여짐
+function printGreeting (username){
+  greeting.innerHTML = `Hello ${username}!`
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
 if(saveUsername === null) {
   loginform.classList.remove(HIDDEN_CLASSNAME);
   loginform.addEventListener("submit", onLoginSubmit);
 } else {
   paintingGreetings(saveUsername);
 }
+
