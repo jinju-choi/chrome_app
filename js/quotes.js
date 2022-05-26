@@ -52,5 +52,5 @@ const autior = document.querySelector('#quote span:last-child');
 
 const todaysQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-quote.innerHTML = todaysQuote.quote;
-autior.innerHTML = todaysQuote.autior;
+quote.innerText = todaysQuote.quote;
+autior.innerText = todaysQuote.autior;

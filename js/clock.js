@@ -11,7 +11,7 @@ function getClock() {
   const hours = String(date.getHours()).padStart(2, "0");
   const minuite = String(date.getMinutes()).padStart(2,"0");
   const seconds = String(date.getSeconds()).padStart(2,"0");
-  clock.innerHTML = `${hours}: ${minuite}: ${seconds}`;
+  clock.innerText = `${hours}: ${minuite}: ${seconds}`;
 }
 
 // web이 load되자 마나 getClock()을 실행하고 매초마다 실행되게
