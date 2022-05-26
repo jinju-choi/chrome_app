@@ -3,6 +3,7 @@ const images = ["image_01.jpg","image_02.jpg","image_03.jpg","image_04.jpg","ima
 // 이미지 랜덤으로
 const chosenImage = images[Math.floor(Math.random() * images.length)];
 
+// 이미지 요소 생성
 const bgImage = document.createElement('img');
 
 bgImage.src = `./img/${chosenImage}`;
