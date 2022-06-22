@@ -8,6 +8,7 @@ const toDoList = document.getElementById("todo-list");
 const TODOS_KEY = "todos";
 
 let toDos = [];
+
 // toDos에 받아온 배열을 문자열로 변환해 localStrage에 저장
 function saveToDos() {
   localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -19,6 +20,8 @@ function deleteTodo(event){
   // 클릭한 요소의 부모요소
   const li = event.target.parentElement;
   li.remove();
+  toDos = toDos.filter((todoItem) => todoItem.id !== parseInt(li.id));
+  saveToDos();
 }
 
 
@@ -26,8 +29,10 @@ function deleteTodo(event){
 function paintToDo(newTodo) {
   // li요소 생성하는 변수
   const li = document.createElement("li");
+  li.id = newTodo.id;
+
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
 
   const button = document.createElement("button");
 
@@ -46,9 +51,13 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value;
   toDoInput.value = "";
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  }
 
-  toDos.push(newTodo);
-  paintToDo(newTodo);
+  toDos.push(newTodoObj);
+  paintToDo(newTodoObj);
   saveToDos();
 }
 
@@ -60,7 +69,7 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 
 // localStorage에 저장되어있는 "toDos" 의 값이 있으면 실행
 // localStorage에 저장되어있는 "toDos" 의 값을 forEach로 parsedToDos배열에 있는 수 만큼 paintToDo함수를 실행 
-if(savedToDos) {
+if(savedToDos !== null) {
   // JSON.sringify() 로 string으로 되어있는 값을 array로 다시 변환(forEach문을 쓰기 위함)
   const parsedToDos = JSON.parse(savedToDos);
   parsedToDos.forEach(paintToDo);
@@ -68,8 +77,7 @@ if(savedToDos) {
 }
 
 
-// 새로고침하고 투두리스트를 작성하면 원래 있던 배열에 값이 덮어 씌워짐
-// 원인은 const toDos = []; 에 배열이 비어있는 상태로 실행되기 때문
-// 오직 새로 입력한 newTodo의 값만 toDos배열에 들어가기 때문에 이전에 있는 localStorage는 덮어짐
-// 해결 방법은 const toDos = []; 를 let toDos = [];로 변경하고
-//  localStorage에 저장되어있는 "toDos" 의 값이 있으면  toDos = parsedToDos (로컬에 들어있는 값)를 넣어주면 됨 
+// 지우고 싶은 아이템을 빼고 새로운 array를 만든다
+// array.filter() :  조건이 true인 아이템만 array로 만든다.
+// array.filter()  function array(item) { return item !== false } item이 false 가 아닌 것을 배열로 만들어라.
+// ex)  const array = ["banana", "apple", "tomato"] function filterExemple(food) { return food !== "banana"}
