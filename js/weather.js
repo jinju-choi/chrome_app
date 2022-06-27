@@ -13,16 +13,41 @@ function onGeoOk(positon) {
   const lon = positon.coords.longitude;
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
+  let weatherIcon = {
+    '01' : 'fa-solid fa-sun',
+    '02' : 'fa-solid fa-cloud-sun',
+    '03' : 'fa-solid fa-cloud',
+    '04' : 'fa-solid fa-cloud-meatball',
+    '09' : 'fa-solid fa-cloud-sun-rain',
+    '10' : 'fa-solid fa-cloud-showers-heavy',
+    '11' : 'fa-solid fa-poo-storm',
+    '13' : 'fa-solid fa-snowflake',
+    '50' : 'fa-solid fa-smog'
+  };
+
   // 자바스크립트가 url을 부름
   // 서버의 응답을 기다려야함
   //response.json() url 안에 있는 데이터들
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-    const weather = document.querySelector("#weather span:first-child");
-    const city = document.querySelector("#weather span:last-child");
+    const weather = document.querySelector("#weather .temp");
+    const city = document.querySelector("#weather .city");
+    const icon = document.querySelector("#weather .icon");
+    const iconCon = data.weather[0].icon;
+    // const iconimg = icon.querySelector("img")
+    const iconAdrs = `http://openweathermap.org/img/wn/${iconCon}@2x.png`;
+
+    const iconimg = document.createElement("i");
+    icon.append(iconimg);
+
+    iconimg.setAttribute('class',weatherIcon[(iconCon).substr(0,2)]);
+
+    // icon.append("<span class='" + weatherIcon[(iconCon).substr(0,2)] +"'></span>");
+    // iconimg.setAttribute('src',iconAdrs);
+
     city.innerText = data.name;
-    weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+    weather.innerText = `${data.weather[0].main} / ${Math.floor(data.main.temp)}℃`;
   });
 
 

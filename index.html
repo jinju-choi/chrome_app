@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Momentum App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/2.0.0/reseter.min.css"
+    integrity="sha512-gCJkkUMGTe73+FMwog6gIBCVJIMXRoc21l6/IPCuzxCex/1sxvO8ctb6Zd4/WWs2UMqmtnDrAdhJht5pEY0LXg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css">
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+  <!-- 아이콘 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-  <form action="" id="login-form" class="hidden">
-    <input type="text" maxlength="15" required placeholder="Whah is your name?">
-    <button type="submit">Log In</button>
-  </form>
+  <div class="container">
+    <div class="inner">
 
-  <h2 id="clock">00:00</h2>
+      <h2 id="clock" class="cine_font">00:00</h2>
+      <h1 id="greeting" class="cine_font hidden"></h1>
 
-  <h1 id="greeting" class="hidden"></h1>
+      <div id="weather">
+        <span class="icon"></span>
+        <span class="temp"></span>
+        <span class="city"></span>
+      </div>
+    </div>
 
-  <form id="todo-form">
-    <input type="text" placeholder="White a To Do and Press Enter" required>
-  </form>
+    <div class="text_box">
+      <form action="" id="login-form" class="hidden">
+        <div class="login_area">
+          <input type="text" maxlength="15" required placeholder="당신의 이름을 적어주세요.">
+          <button type="submit">로그인</button>
+        </div>
+      </form>
+      <div class="todo-area">
+        <form id="todo-form">
+          <input type="text" placeholder="할일을 적어주세요." required>
+        </form>
+        <ul id="todo-list"></ul>
+      </div>
+    </div>
 
-  <ul id="todo-list"></ul>
+    <div id="quote" class="cine_font">
+      <span></span>
+      <span class="autior"></span>
+    </div>
 
-  <div id="quote">
-    <span></span>
-    <span></span>
+    <div id="bg_wrap"></div>
+
   </div>
-  
-  <div id="weather">
-    <span></span>
-    <span></span>
-  </div>
-  
+
+  <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"
+    integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" crossorigin="anonymous">
+  </script>
   <script src="./js/greeting.js"></script>
   <script src="./js/clock.js"></script>
   <script src="./js/quotes.js"></script>
@@ -40,4 +68,5 @@
   <script src="./js/todo.js"></script>
   <script src="./js/weather.js"></script>
 </body>
+
 </html>
