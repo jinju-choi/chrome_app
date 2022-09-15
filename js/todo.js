@@ -37,7 +37,7 @@ function paintToDo(newTodo) {
   const button = document.createElement("button");
 
   button.addEventListener('click', deleteTodo);
-  button.innerText = "❌"
+  button.className = 'delete-btn';
 
   //input에 입력한 값을 span에 넣기
   li.appendChild(span);
