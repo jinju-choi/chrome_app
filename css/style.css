@@ -58,10 +58,30 @@ input {
 
 .grid_container {
   display: grid;
+  grid-template-areas:
+    "header header header"
+    "greeting greeting greeting "
+    "quote quote todo"
+  ;
+  grid-template-rows: 1fr 5fr 1fr;
+  height: 100%;
 }
 
-.grid_item {
-  
+.head {
+  grid-area: header;
+}
+
+.greeting-area {
+  grid-area: greeting;
+}
+
+.quote-area {
+  grid-area: quote;
+  align-self: flex-end;
+}
+
+.todo-list-box {
+  grid-area: todo;
 }
 
 /* 시계 */
@@ -122,7 +142,7 @@ input {
   padding: 5px 3px;
 }
 
-#todo-list li + li {
+#todo-list li+li {
   border-top: 1px solid rgba(255, 255, 255, .2);
 }
 
