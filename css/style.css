@@ -10,9 +10,12 @@
   margin: 0;
   padding: 0;
   font-weight: normal;
+  box-sizing: border-box;
 }
 
-body,button,input {
+body,
+button,
+input {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
 }
@@ -22,6 +25,7 @@ body,button,input {
 }
 
 .container {
+  height: 100vh;
   padding: 30px 0;
 }
 
@@ -52,6 +56,13 @@ body,button,input {
   margin: 0 auto;
 }
 
+.grid_container {
+  display: grid;
+}
+
+.grid_item {
+  
+}
 
 /* 시계 */
 #clock {
@@ -60,12 +71,30 @@ body,button,input {
   text-align: center;
 }
 
+
+/* 투두리스트 */
+/* 할일 적는 란 */
+#todo-form {}
+
+#todo-form input {
+  width: 100%;
+  padding: 2%;
+  font-size: 16px;
+}
+
+#todo-form input::placeholder {
+  color: rgba(255, 255, 255, .5)
+}
+
+.todo-list-box {
+  margin-left: auto;
+  width: 300px;
+}
+
 .text_box {
-  width: 250px;
-  margin-top: 70px;
-  margin-left: 50px;
+  width: 100%;
   border-radius: 20px;
-  background: rgba(0,0,0,.8);
+  background: rgba(0, 0, 0, .8);
   overflow: hidden;
 }
 
@@ -88,23 +117,35 @@ body,button,input {
 }
 
 #todo-list li {
-  display: flex;
-  align-items: center;
+  list-style-type: disc;
+  list-style-position: inside;
   padding: 5px 3px;
-  border-bottom: 1px solid rgba(255,255,255,.2);
 }
-#todo-list li button {
-  font-size: 8px;
-  background: transparent;
+
+#todo-list li + li {
+  border-top: 1px solid rgba(255, 255, 255, .2);
+}
+
+
+#todo-list li span {
+  vertical-align: middle;
+}
+
+#todo-list .delete-btn {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+  background: url("../img/circle-xmark-regular.svg") no-repeat center /100%;
+  filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(69deg) brightness(47%) contrast(100%);
   cursor: pointer;
-  border: none;
 }
 
 /* 적는란 */
 .login_area {
   display: inline-block;
   margin-bottom: 50px;
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 0, 0, .6);
   padding: 10px;
   border-radius: 10px;
 }
@@ -118,13 +159,13 @@ input {
   color: #fff;
 }
 
-.login_area button {
-
-}
+.login_area button {}
 
 #greeting {
+  margin-top: 50px;
   font-size: 50px;
 }
+
 
 /* 배경이미지 */
 #bg_wrap {
@@ -133,7 +174,7 @@ input {
   left: 0;
   z-index: -2;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 #bg_wrap::before {
@@ -160,11 +201,12 @@ input {
 }
 
 #quote {
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   bottom: 7%;
   z-index: 1;
-  transform: translateX(-50%);
+  width: 100%;
+  transform: translateX(-50%); */
   font-size: 30px;
   font-family: 'acinema';
 }
@@ -172,6 +214,7 @@ input {
 #quote span {
   display: block;
   text-align: center;
+  word-break: keep-all;
 }
 
 #quote .autior {
